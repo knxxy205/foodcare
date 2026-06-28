@@ -1,55 +1,115 @@
 # FoodCare
 
-FoodCare is a Laravel 12 food donation platform. Donatur use the public website to register, donate, and view donation history. Admin and relawan use Filament at `/admin` for operations.
+FoodCare is a web-based food donation management platform built with Laravel 12. The system connects donors, administrators, and volunteers to manage food donations from donation collection, inventory management, sorting, packaging, and distribution to beneficiaries.
 
-## Stack
+The platform implements the FEFO (First Expired First Out) method to prioritize food items with the nearest expiration date and includes warehouse simulation and route optimization features to improve distribution efficiency.
 
-- Laravel 12
-- PHP 8.3+
-- MySQL or SQLite for local tests
-- Filament 3
-- Tailwind CSS v4 and Vite
-- Chart.js through Filament widgets
-- Leaflet.js in the route optimizer page
+## Features
 
-## Core Roles
+### Public Website
 
-- `admin`: manages programs, donations, purchases, inventory, volunteers, beneficiaries, distributions, reports, simulation, and route optimization.
-- `relawan`: handles sorting, packaging, and assigned distribution tasks in Filament.
-- `donatur`: uses the public website only.
+* User registration and login
+* Browse donation programs
+* Online food donation
+* Donation history
+* User profile management
+* About and FAQ pages
 
-## Local Setup
+### Admin Dashboard
+
+* Dashboard statistics
+* Donation program management
+* Donation management
+* Food purchase management
+* Food inventory management
+* FEFO inventory allocation
+* Beneficiary management
+* Distribution management
+* Volunteer management
+* Warehouse simulation
+* Distribution route optimization
+* Reports and analytics
+
+### Volunteer Dashboard
+
+* Sorting donated food
+* Packaging process
+* Distribution task management
+
+## Technology Stack
+
+* Laravel 12
+* PHP 8.3+
+* MySQL
+* Filament 3
+* Tailwind CSS
+* Vite
+* Chart.js
+* Leaflet.js
+
+## Installation
 
 ```bash
+git clone https://github.com/USERNAME/foodcare.git
+cd foodcare
+
 composer install
 npm install
+
 cp .env.example .env
 php artisan key:generate
+
 php artisan migrate --seed
+
 npm run build
+php artisan storage:link
 php artisan serve
 ```
 
-Default seeded accounts:
+## Default Accounts
 
-- Admin: `admin@foodcare.org` / `password`
-- Relawan: `volunteer@foodcare.org` / `password`
-- Donatur: `donatur@foodcare.org` / `password`
+| Role      | Email                                                   | Password |
+| --------- | ------------------------------------------------------- | -------- |
+| Admin     | [admin@foodcare.org](mailto:admin@foodcare.org)         | password |
+| Volunteer | [volunteer@foodcare.org](mailto:volunteer@foodcare.org) | password |
+| Donor     | [donatur@foodcare.org](mailto:donatur@foodcare.org)     | password |
 
-## Verification
+## Running Tests
 
 ```bash
 php artisan test
 ```
 
-Current suite: 9 tests, 31 assertions.
+## Project Structure
 
-## Key Services
+```text
+app/
+bootstrap/
+config/
+database/
+public/
+resources/
+routes/
+storage/
+tests/
+```
 
-- `DonationService`: records successful simulated payments and syncs program totals.
-- `InventoryService`: creates stock and writes inventory history.
-- `FEFOService`: allocates distributions with strict FEFO and reduces only `jumlah_tersedia`.
-- `WarehouseSimulationService`: stores bottleneck/optimal simulation history.
-- `RouteOptimizerService`: generates nearest-distance-first routes when warehouse status is `Optimal`.
-- `ReportService`: prepares report data and CSV-style spreadsheet exports.
+## Main Modules
 
+* Authentication
+* Food Donation
+* Donation Programs
+* Food Inventory
+* FEFO Allocation
+* Sorting
+* Packaging
+* Distribution
+* Beneficiaries
+* Warehouse Simulation
+* Route Optimization
+* Reports
+* Dashboard Analytics
+
+## License
+
+This project was developed for educational and academic purposes.
