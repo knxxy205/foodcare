@@ -6,8 +6,6 @@ The platform implements the FEFO (First Expired First Out) method to prioritize 
 
 ## Features
 
-<a href="https://trendshift.io/repositories/23518?utm_source=repository-badge&amp;utm_medium=badge&amp;utm_campaign=badge-repository-23518" target="_blank" rel="noopener noreferrer"><img src="https://trendshift.io/api/badge/repositories/23518" alt="THU-MAIC%2FOpenMAIC | Trendshift" width="250" height="55"/></a>
-
 ### Public Website
 
 * User registration and login
