@@ -110,6 +110,8 @@ class DistribusiResource extends Resource
                             ->default('pending')
                             ->required(),
                         Forms\Components\FileUpload::make('foto_bukti')
+                            ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
+                            ->maxSize(5120)
                             ->label('Foto Bukti Distribusi')
                             ->directory('bukti_distribusi')
                             ->image()

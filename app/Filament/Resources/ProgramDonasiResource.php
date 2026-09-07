@@ -69,6 +69,8 @@ class ProgramDonasiResource extends Resource
                             ->label('Tanggal Berakhir Donasi')
                             ->nullable(),
                         Forms\Components\FileUpload::make('foto')
+                            ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
+                            ->maxSize(5120)
                             ->label('Foto Program')
                             ->directory('programs')
                             ->image()

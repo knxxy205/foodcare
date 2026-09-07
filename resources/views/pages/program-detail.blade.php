@@ -20,8 +20,8 @@
                     @forelse($program->donasis as $donasi)
                         <div class="py-4 flex items-center justify-between gap-4">
                             <div>
-                                <p class="font-bold text-slate-900">{{ $donasi->user->name }}</p>
-                                <p class="text-sm text-slate-500">{{ $donasi->tanggal->format('d M Y, H:i') }} via {{ $donasi->metode_pembayaran }}</p>
+                                <p class="font-bold text-slate-900">{{ preg_replace('/^(.).*/u', '$1*****', $donasi->user->name) }}</p>
+                                <p class="text-sm text-slate-500">{{ $donasi->tanggal->format('d M Y, H:i') }}</p>
                             </div>
                             <p class="font-black text-emerald-700">Rp {{ number_format($donasi->jumlah, 0, ',', '.') }}</p>
                         </div>

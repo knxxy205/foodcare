@@ -6,6 +6,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Support\Str;
 use Illuminate\Validation\Rules\Password;
 
 class AuthController extends Controller
@@ -25,7 +27,19 @@ class AuthController extends Controller
             'password' => ['required'],
         ]);
 
+        $key = Str::lower($credentials['email']).'|'.$request->ip();
+
+        if (RateLimiter::tooManyAttempts($key, 5)) {
+            $seconds = RateLimiter::availableIn($key);
+            RateLimiter::hit($key, 60);
+
+        return back()->withErrors([
+                'email' => "Terlalu banyak percobaan login. Coba lagi dalam {$seconds} detik.",
+            ])->onlyInput('email');
+        }
+
         if (Auth::attempt($credentials, $request->boolean('remember'))) {
+            RateLimiter::clear($key);
             $request->session()->regenerate();
             
             $user = Auth::user();
